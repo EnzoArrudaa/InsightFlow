@@ -38,3 +38,7 @@ O dashboard apresenta indicadores como:
 ## Equipe
 
 Projeto desenvolvido para a ExpoTech 2026.
+
+## Site do Projeto
+
+https://nexus-horned-data-flow.base44.app
