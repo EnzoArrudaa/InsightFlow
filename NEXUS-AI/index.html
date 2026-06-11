@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NEXUS AI - Business Intelligence</title>
+
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+
+<!-- Tabler Icons -->
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<div class="app">
+
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+
+<div class="sidebar-logo">
+
+<div class="logo-text">
+NEXUS AI
+</div>
+
+<div class="logo-sub">
+Business Intelligence Platform
+</div>
+
+</div>
+
+
+
+<nav class="sidebar-nav">
+
+
+<div class="nav-section">
+Principal
+</div>
+
+
+<div class="nav-item active"
+onclick="navigate('dashboard',this)">
+
+<i class="ti ti-layout-dashboard"></i>
+
+Dashboard
+
+</div>
+
+
+
+<div class="nav-item"
+onclick="navigate('ai',this)">
+
+<i class="ti ti-brain"></i>
+
+IA Generativa
+
+<span class="nav-badge">
+Novo
+</span>
+
+</div>
+
+
+
+
+<div class="nav-section">
+Dados
+</div>
+
+
+
+<div class="nav-item"
+onclick="navigate('pipeline',this)">
+
+<i class="ti ti-git-branch"></i>
+
+Pipeline
+
+</div>
+
+
+
+<div class="nav-item"
+onclick="navigate('vendas',this)">
+
+<i class="ti ti-chart-bar"></i>
+
+Vendas
+
+</div>
+
+
+
+<div class="nav-item"
+onclick="navigate('clientes',this)">
+
+<i class="ti ti-users"></i>
+
+Clientes
+
+</div>
+
+
+
+<div class="nav-item"
+onclick="navigate('produtos',this)">
+
+<i class="ti ti-package"></i>
+
+Produtos
+
+</div>
+
+
+
+
+<div class="nav-section">
+Infraestrutura
+</div>
+
+
+<div class="nav-item"
+onclick="navigate('infra',this)">
+
+<i class="ti ti-server"></i>
+
+Infraestrutura
+
+</div>
+
+
+
+<div class="nav-item"
+onclick="navigate('seguranca',this)">
+
+<i class="ti ti-shield"></i>
+
+Segurança LGPD
+
+</div>
+
+
+
+<div class="nav-item"
+onclick="navigate('dataops',this)">
+
+<i class="ti ti-database"></i>
+
+DataOps
+
+</div>
+
+
+
+</nav>
+
+
+
+<div class="sidebar-footer">
+
+<div class="user-pill">
+
+<div class="user-avatar">
+AD
+</div>
+
+
+<div>
+
+<div class="user-name">
+Admin
+</div>
+
+<div class="user-role">
+Administrador
+</div>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+
+</aside>
+
+
+
+
+
+<!-- ÁREA PRINCIPAL -->
+
+
+<div class="main">
+
+
+
+<header class="topbar">
+
+
+<h2 id="page-title">
+Dashboard Geral
+</h2>
+
+
+
+<div class="status">
+
+<span class="live-dot"></span>
+
+Sistema Online
+
+</div>
+
+
+
+</header>
+
+
+
+
+
+<main class="content">
+
+
+
+<!-- DASHBOARD -->
+
+
+<section class="page active" id="page-dashboard">
+
+
+<div class="grid-4">
+
+
+<div class="kpi blue">
+
+<div class="kpi-label">
+Faturamento Mensal
+</div>
+
+<div class="kpi-val">
+R$4,2M
+</div>
+
+
+<div class="kpi-change up">
+↑ 18,3%
+</div>
+
+
+</div>
+
+
+
+<div class="kpi teal">
+
+<div class="kpi-label">
+Pedidos
+</div>
+
+<div class="kpi-val">
+15.840
+</div>
+
+
+<div class="kpi-change up">
+↑ 12%
+</div>
+
+
+</div>
+
+
+
+<div class="kpi amber">
+
+<div class="kpi-label">
+Ticket Médio
+</div>
+
+<div class="kpi-val">
+R$265
+</div>
+
+
+<div class="kpi-change up">
+↑ 5%
+</div>
+
+
+</div>
+
+
+
+<div class="kpi purple">
+
+<div class="kpi-label">
+Conversão
+</div>
+
+<div class="kpi-val">
+8,7%
+</div>
+
+
+<div class="kpi-change up">
+↑ 2%
+</div>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<div class="grid-3-1">
+
+
+<div class="card">
+
+<div class="card-header">
+Faturamento últimos 12 meses
+</div>
+
+
+<div class="chart-wrap">
+
+<canvas id="revenueChart"></canvas>
+
+</div>
+
+
+</div>
+
+
+
+<div class="card">
+
+<div class="card-header">
+Qualidade dos Dados
+</div>
+
+
+<canvas id="qualityChart"></canvas>
+
+
+</div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+<!-- IA -->
+
+
+<section class="page" id="page-ai">
+
+
+<div class="card chat">
+
+
+<div class="chat-header">
+
+<i class="ti ti-brain"></i>
+
+NEXUS IA Online
+
+</div>
+
+
+<div id="chat-messages"
+class="chat-messages">
+
+
+<div class="msg ai">
+
+<div class="msg-avatar">
+AI
+</div>
+
+
+<div class="msg-bubble">
+
+Olá! Sou a IA do sistema NEXUS.
+
+Posso analisar faturamento, clientes e produtos.
+
+</div>
+
+</div>
+
+
+</div>
+
+
+
+<div class="chat-input-area">
+
+
+<input id="chat-input"
+class="chat-input"
+placeholder="Digite sua pergunta...">
+
+
+<button onclick="sendChat()">
+
+<i class="ti ti-send"></i>
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+<!-- OUTRAS PÁGINAS -->
+
+
+<section class="page" id="page-pipeline">
+
+<div class="card">
+
+<h2>
+Pipeline de Dados
+</h2>
+
+<p>
+Origem → Kafka → Spark → Data Lake → Dashboard
+</p>
+
+
+</div>
+
+</section>
+
+
+
+<section class="page" id="page-vendas">
+
+<div class="card">
+
+<h2>
+Análise de Vendas
+</h2>
+
+</div>
+
+</section>
+
+
+
+
+<section class="page" id="page-clientes">
+
+<div class="card">
+
+<h2>
+Base de Clientes
+</h2>
+
+</div>
+
+</section>
+
+
+
+
+<section class="page" id="page-produtos">
+
+<div class="card">
+
+<h2>
+Produtos
+</h2>
+
+</div>
+
+</section>
+
+
+
+
+
+<section class="page" id="page-infra">
+
+<div class="card">
+
+<h2>
+Infraestrutura AWS
+</h2>
+
+</div>
+
+</section>
+
+
+
+
+
+<section class="page" id="page-seguranca">
+
+<div class="card">
+
+<h2>
+Segurança e LGPD
+</h2>
+
+</div>
+
+</section>
+
+
+
+
+
+<section class="page" id="page-dataops">
+
+<div class="card">
+
+<h2>
+DataOps e Qualidade
+</h2>
+
+</div>
+
+</section>
+
+
+
+</main>
+
+
+
+</div>
+
+
+</div>
+
+
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>
